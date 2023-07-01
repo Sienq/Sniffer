@@ -1,11 +1,11 @@
 # Sniffer
 
 ## Milestones
-- [] Capturing Packets
-- [] Packet Filtering
-- [] Analyzing Packets
-- [] Displaying Results
-- [] Additional Features
+- [ ] Capturing Packets
+- [ ] Packet Filtering
+- [ ] Analyzing Packets
+- [ ] Displaying Results
+- [ ] Additional Features
 
 ## Prerequisites:
 - G++
