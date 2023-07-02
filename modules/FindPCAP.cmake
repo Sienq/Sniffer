@@ -1,0 +1,13 @@
+find_path(PCAP_INCLUDE_DIRS pcap.h)
+find_library(PCAP_LIBRARIES NAMES pcap)
+
+if (PCAP_INCLUDE_DIRS AND PCAP_LIBRARIES)
+    set(PCAP_FOUND TRUE)
+endif()
+
+if (PCAP_FOUND)
+    set(PCAP_LIBRARIES ${PCAP_LIBRARIES} PARENT_SCOPE)
+    set(PCAP_INCLUDE_DIRS ${PCAP_INCLUDE_DIRS} PARENT_SCOPE)
+else()
+    message(FATAL_ERROR "libpcap not found")
+endif()
