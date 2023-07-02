@@ -4,10 +4,13 @@ project(Sniffer CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++2a")
-
-
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/modules)
+message(PROJECT_SOURCE_DIR="${CMAKE_MODULE_PATH}")
 FIND_PACKAGE(Boost 1.71 COMPONENTS program_options filesystem REQUIRED)
+FIND_PACKAGE(PCAP REQUIRED)
 INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR})
+include_directories(${PCAP_INCLUDE_DIRS})
+link_directories(${PCAP_LIBRARY_DIRS})
 
 # Example: source/file.cpp
 set(SOURCES apps/main.cpp)
@@ -15,7 +18,7 @@ set(SOURCES apps/main.cpp)
 add_executable(Sniff ${SOURCES})
 target_include_directories(Sniff PRIVATE ${PROJECT_SOURCE_DIR}/includes)
 
-target_link_libraries(Sniff ${BOOST_LIBRARIES}   ${Boost_FILESYSTEM_LIBRARY} ${Boost_SYSTEM_LIBRARY})
+target_link_libraries(Sniff ${BOOST_LIBRARIES}   ${Boost_FILESYSTEM_LIBRARY} ${Boost_SYSTEM_LIBRARY} ${PCAP_LIBRARIES})
 
 include(FetchContent)
 FetchContent_Declare(
