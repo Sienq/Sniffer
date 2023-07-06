@@ -13,10 +13,10 @@ include_directories(${PCAP_INCLUDE_DIRS})
 link_directories(${PCAP_LIBRARY_DIRS})
 
 # Example: source/file.cpp
-set(SOURCES apps/main.cpp)
+set(SOURCES apps/main.cpp source/capturePackets.cpp)
 
 add_executable(Sniff ${SOURCES})
-target_include_directories(Sniff PRIVATE ${PROJECT_SOURCE_DIR}/includes)
+target_include_directories(Sniff PRIVATE ${PROJECT_SOURCE_DIR}/include)
 
 target_link_libraries(Sniff ${BOOST_LIBRARIES}   ${Boost_FILESYSTEM_LIBRARY} ${Boost_SYSTEM_LIBRARY} ${PCAP_LIBRARIES})
 
@@ -50,7 +50,7 @@ target_link_libraries(
   ${Boost_FILESYSTEM_LIBRARY}
   ${Boost_SYSTEM_LIBRARY}
 )
-target_include_directories(tests PRIVATE ${PROJECT_SOURCE_DIR}/includes)
+target_include_directories(tests PRIVATE ${PROJECT_SOURCE_DIR}/include)
 #EXAMPLE of including new directiories in test files: target_include_directories(tests PRIVATE ${PROJECT_SOURCE_DIR}/tests/fileHandlerTests)
 include(GoogleTest)
 gtest_discover_tests(tests)
