@@ -1,5 +1,6 @@
 #include<capturePackets.hpp>
 #include<pcap.h>
+#include<cstring>
 
 void CapturePackets::capturePackets(){
     pcap_pkthdr* header;
@@ -10,17 +11,21 @@ void CapturePackets::capturePackets(){
         }
         std::cout<< returnValue;
         std::cout << "packet:\n";
-        std::cout << packet;
+        for(int i = 0; i < header->len; i++){
+        std::printf("%02X ", packet[i]);
+        }
+        std::cout << '\n';
     }
 
 }
 CapturePackets::CapturePackets(){
     char errbuf[PCAP_ERRBUF_SIZE];
-    handle = pcap_open_live(nullptr, 1, 1000, 10, errbuf);
+    handle = (pcap_open_live(nullptr, 1, 1000, 10, errbuf));
     std::cout<<"Stream opened."<<'\n';
 }
 
 CapturePackets::~CapturePackets(){
     pcap_close(handle);
+    free(handle);
     std::cout<<"Stream closed."<<'\n';
 }
