@@ -12,8 +12,9 @@ class CapturePackets{
 
     public:
     void capturePackets();
-    void show_packet(std::vector<u_char> stored_packet_vector);
+    void show_packet(std::vector<u_char>);
     void save_packet_into_file(const std::string&);
+    void save_packet_live(const std::vector<u_char>&);
     CapturePackets();
     ~CapturePackets();
 
