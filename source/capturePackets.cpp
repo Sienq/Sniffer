@@ -26,6 +26,7 @@ void CapturePackets::capturePackets()
         for(int i = 0; i < packet_size; i++){
             stored_packet_vector.push_back(packet[i]);
         }
+        save_packet_live(stored_packet_vector);
         cache.push_back(stored_packet_vector);
         show_packet(stored_packet_vector);
         counter++;
@@ -57,6 +58,15 @@ void CapturePackets::save_packet_into_file(const std::string& filename)
     }
     outfile.close();
     std::cout << "Packet saved to file: " << filename << std::endl;
+}
+void CapturePackets::save_packet_live(const std::vector<u_char>& stored_packet_vector)
+{
+    std::ofstream outfile;
+    outfile.open("live_data.txt", std::ios_base::app);
+    for(int i = 0; i < stored_packet_vector.size(); i++){
+    outfile << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(stored_packet_vector[i]) << " ";
+    }
+    outfile << '\n';
 }
 
 
