@@ -13,7 +13,7 @@ include_directories(${PCAP_INCLUDE_DIRS})
 link_directories(${PCAP_LIBRARY_DIRS})
 
 # Example: source/file.cpp
-set(SOURCES apps/main.cpp source/capturePackets.cpp)
+set(SOURCES apps/main.cpp source/capturePackets.cpp source/filterPackets.cpp)
 
 add_executable(Sniff ${SOURCES})
 target_include_directories(Sniff PRIVATE ${PROJECT_SOURCE_DIR}/include)
