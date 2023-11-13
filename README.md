@@ -1,7 +1,7 @@
 # Sniffer
 
 ## Milestones
-- [ ] Capturing Packets
+- [x] Capturing Packets
 - [ ] Packet Filtering
 - [ ] Analyzing Packets
 - [ ] Displaying Results
