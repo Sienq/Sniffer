@@ -10,11 +10,11 @@ void CapturePackets::capturePackets()
 {
     pcap_pkthdr *header;
     const u_char *packet;
-    int number_of_packets = 10;
+    int number_of_packets = 100;
     int counter = 0;
 
     while (int returnValue = pcap_next_ex(handle, &header, &packet) >= 0)
-    {   
+    {
         if(counter > number_of_packets){
             break;
         }
@@ -30,14 +30,13 @@ void CapturePackets::capturePackets()
         FilterPackets f;
         f.filterPacketEtherType(stored_packet_vector);
         auto ether_type = f.getEtherType();
-        if(ether_type == "IPv4" or ether_type == "IPv6")
+        if(ether_type != NetworkProtocols::UNKNOWN)
         {
-            std::cout<<ether_type<<'\n';
+            std::cout<<netProtAsString(ether_type)<<"\n";
             counter++;
         }
         save_packet_live(stored_packet_vector);
         cache.push_back(stored_packet_vector);
-        //show_packet(stored_packet_vector);
     }
     save_packet_into_file("out.txt");
 }

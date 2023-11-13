@@ -4,6 +4,11 @@
 #include<vector>
 #include<string>
 
+#ifndef CAPTURE_PACKETS_HPP
+#define CAPTURE_PACKETS_HPP
+
+
+
 class CapturePackets{
     private:
     pcap_t* handle;
@@ -21,3 +26,4 @@ class CapturePackets{
 };
 
 
+#endif // !CAPTURE_PACKETS_HPP
